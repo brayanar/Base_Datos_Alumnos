@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de datos alumnos</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <h2>Inscribir alumnos</h2>
+
+    <form id="formulario">
+        <input type="text" id="nombre" name="nombre">
+        <label for="nombre">Ingrese nombre del alumno</label><br><br>
+
+        <input type="text" id="apellidos" name="apellidos">
+        <label for="apellidos">Ingrese Apellidos del alumno</label><br><br>
+
+        <input type="number" id="edad" name="edad">
+        <label for="edad">Ingrese edad del alumno</label><br><br>
+
+        <p> Materias a las que se inscribe el alumno</p>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="lenguaje" value="lenguaje"
+                name="materias">
+            <label class="form-check-label" for="lenguaje">Lenguaje</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="matematicas" value="matematicas"
+                name="materias">
+            <label class="form-check-label" for="matematicas">Matematicas</label>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="ingles" value="ingles" name="materias">
+            <label class="form-check-label" for="ingles">Ingles</label>
+        </div>
+    </form>
+
+    <button id="btnGuardarAlumno">Guardar Alumno</button>
+
+
+
+    <script src="./assets/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
