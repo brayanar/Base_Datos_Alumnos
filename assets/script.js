@@ -1,9 +1,13 @@
 class alumno {
 
-    constructor(nombre, apellidos, edad, materias, calificaciones) {
+    constructor(nombre, apellidos, edad, rut, direccion, telefono, correo, materias, calificaciones) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
+        this.rut = rut;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
         this.materias = materias || [];
         this.calificaciones = calificaciones || [];
     };
@@ -21,6 +25,10 @@ function guardarAlumno() {
     const nombreAlumno = document.querySelector("#nombre").value
     const apellidosAlumno = document.querySelector("#apellidos").value
     const edadAlumno = document.querySelector("#edad").value
+    const rutAlumno = document.querySelector("#rut").value
+    const direccionAlumno = document.querySelector("#direccion").value
+    const telefonoAlumno = document.querySelector("#telefono").value
+    const correoAlumno = document.querySelector("#correo").value
 
     const materiasAlumno = {};
     const checkboxes = document.querySelectorAll('input[name="materias"]:checked');
@@ -41,7 +49,7 @@ function guardarAlumno() {
     } else {
         console.log("Materias seleccionadas: ", materiasAlumno);
 
-        const nvoAlumno = new alumno(nombreAlumno, apellidosAlumno, edadAlumno, materiasAlumno);
+        const nvoAlumno = new alumno(nombreAlumno, apellidosAlumno, edadAlumno, materiasAlumno, rutAlumno, direccionAlumno, telefonoAlumno, correoAlumno);
 
         nvoAlumno.pushAlumno()
         console.log("Array de alumnos: ", alumnos)
