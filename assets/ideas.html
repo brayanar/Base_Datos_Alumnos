@@ -1,0 +1,102 @@
+<!-- Para la vizualizacion de las notas -->
+
+<title>Grilla Dinámica de Ingreso de Datos</title>
+<style>
+    #dataGrid {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+    }
+
+    #dataGrid th,
+    #dataGrid td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #dataGrid th {
+        background-color: #f0f0f0;
+    }
+
+    .row-actions button {
+        margin-right: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<h1>Ingreso de Datos Dinámico</h1>
+
+<table id="dataGrid">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<button id="addRowBtn">Agregar Fila</button>
+<button id="getDataBtn">Obtener Datos</button>
+
+<div id="output">
+    <h2>Datos Ingresados:</h2>
+    <pre id="jsonData"></pre>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dataGridBody = document.querySelector('#dataGrid tbody');
+        const addRowBtn = document.querySelector('#addRowBtn');
+        const getDataBtn = document.querySelector('#getDataBtn');
+        const jsonDataOutput = document.querySelector('#jsonData');
+
+        let rowCount = 0;
+
+        addRowBtn.addEventListener('click', () => {
+            const newRow = dataGridBody.insertRow();
+            newRow.dataset.rowId = rowCount++; // Asignar un ID único a la fila
+
+            const nameCell = newRow.insertCell();
+            nameCell.innerHTML = '<input type="text" name="nombre">';
+
+            const lastNameCell = newRow.insertCell();
+            lastNameCell.innerHTML = '<input type="text" name="apellido">';
+
+            const ageCell = newRow.insertCell();
+            ageCell.innerHTML = '<input type="number" name="edad">';
+
+            const actionsCell = newRow.insertCell();
+            actionsCell.classList.add('row-actions');
+            actionsCell.innerHTML = `
+        <button onclick="eliminarFila(this)">Eliminar</button>
+    `;
+        });
+
+        getDataBtn.addEventListener('click', () => {
+            const data = [];
+            const rows = dataGridBody.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const rowData = {};
+                const inputs = row.querySelectorAll('input');
+
+                inputs.forEach(input => {
+                    rowData[input.name] = input.value;
+                });
+                data.push(rowData);
+            });
+
+            jsonDataOutput.textContent = JSON.stringify(data, null, 2);
+        });
+    });
+
+    function eliminarFila(button) {
+        const row = button.parentNode.parentNode;
+        row.remove();
+    }
+</script>

@@ -12,11 +12,13 @@
 
 <body>
 
-    <section id="navBar">
+    <section id="navBar" style="display: none;">
 
         <!-- Menu principal de direcciones -->
 
         <nav id="menuIz">
+            <input type="search" placeholder="search" aria-label="search">
+            <button type="submit" onclick="buscar()">Buscar</button>
             <a id="pInscripcion" href="#pInscripcion">Inscribir Alumno</a>
             <a id="pClases" href="#pClases">Clases</a>
             <a id="pEquipos" href="#pEquipos">Equipos</a>
@@ -25,7 +27,7 @@
 
     </section>
 
-    <section id="pInscripcion">
+    <section id="pInscripcion" style="display: none;">
 
         <!-- Pantalla de inscripción de un alumno -->
 
@@ -82,6 +84,30 @@
         
         <!-- Menu de clases con almunos inscritos -->
 
+        <div>
+            <button>
+                <a href="#pAlumnos">Lenguaje</a>
+            </button>
+        </div>
+
+        <div>
+            <button>
+                <a href="#pAlumnos">Matematicas</a>
+            </button>
+        </div>
+
+        <div>
+            <button>
+                <a href="#pAlumnos">Ingles</a>
+            </button>
+        </div>
+
+        <div>
+            <button>
+                <a href="#pAlumnos">Contabilidad</a>
+            </button>
+        </div>
+
     </section>
 
     <section id="pEquipos">
@@ -93,7 +119,13 @@
     <section id="pDashboard">
 
         <!-- Dashboard de datos -->
-         
+
+    </section>
+
+    <section id="pAlumnos">
+
+        <!-- Grilla de Alumnos -->
+
     </section>
 
     <script src="./assets/script.js"></script>
