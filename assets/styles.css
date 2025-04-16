@@ -1,0 +1,25 @@
+body {
+    width: 80%;
+    height: 100vh;
+    justify-self: center;
+    align-content: center;
+    background-color: #F8F3D9 !important;
+}
+
+/* Section navBar */
+
+nav {
+    background-color: blanchedalmond !important;
+}
+
+#btnH {
+    background-color: rgb(248 249 250) !important;
+}
+
+#formSearch {
+    margin-top: 0px;
+}
+
+#canvasHeader {
+    padding-top: 30px;
+}

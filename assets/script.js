@@ -57,3 +57,13 @@ function guardarAlumno() {
 }
 
 document.getElementById("btnGuardarAlumno").addEventListener("click", guardarAlumno);
+
+
+function pantallainscripcion () {
+
+    const pInscripcion = document.getElementById("pInscripcion")
+
+    pInscripcion.style.display = ""
+}
+
+document.getElementById("pInscribir").addEventListener("click", pantallainscripcion);
