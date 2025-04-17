@@ -30,7 +30,7 @@ function guardarAlumno() {
     const telefonoAlumno = document.querySelector("#telefono").value
     const correoAlumno = document.querySelector("#correo").value
 
-    const materiasAlumno = {};
+/*     const materiasAlumno = {};
     const checkboxes = document.querySelectorAll('input[name="materias"]:checked');
 
     if (checkboxes.length === 0) {
@@ -41,15 +41,15 @@ function guardarAlumno() {
             const checkbox = checkboxes[i];
             materiasAlumno[checkbox.value] = checkbox.value;
         }
-    };
+    }; */
 
     if (!nombreAlumno || !apellidosAlumno || !edadAlumno) {
         alert("Porfavor indique los datos del Alumno.");
         return;
     } else {
-        console.log("Materias seleccionadas: ", materiasAlumno);
+        // console.log("Materias seleccionadas: ", materiasAlumno); materiasAlumno
 
-        const nvoAlumno = new alumno(nombreAlumno, apellidosAlumno, edadAlumno, materiasAlumno, rutAlumno, direccionAlumno, telefonoAlumno, correoAlumno);
+        const nvoAlumno = new alumno(nombreAlumno, apellidosAlumno, edadAlumno, rutAlumno, direccionAlumno, telefonoAlumno, correoAlumno);
 
         nvoAlumno.pushAlumno()
         console.log("Array de alumnos: ", alumnos)

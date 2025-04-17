@@ -19,8 +19,8 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Go</button>
+                    <input class="form-control me-2" type="search" placeholder="Search student" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="submit">Go</button>
                 </form>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"
@@ -44,7 +44,7 @@
                                     aria-expanded="false">
                                     Clases
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu" id="dropdownClases">
                                     <li><a class="dropdown-item" href="#pGrilla">Lenguaje</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -70,9 +70,9 @@
                                     <li><a class="dropdown-item" href="#">Nuevo grupo</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#pClases">Clases</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -101,35 +101,35 @@
 
         <form class="row g-3">
             <div class="col-md-4">
-                <label for="validationDefault01" class="form-label">First name</label>
-                <input type="text" class="form-control" id="validationDefault01" required>
+                <label for="nombre" class="form-label">First name</label>
+                <input type="text" class="form-control" id="nombre" required>
             </div>
             <div class="col-md-4">
-                <label for="validationDefault02" class="form-label">Last name</label>
-                <input type="text" class="form-control" id="validationDefault02" required>
+                <label for="apellidos" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="apellidos" required>
             </div>
             <div class="col-md-4">
-                <label for="validationDefault03" class="form-label">Age</label>
-                <input type="number" class="form-control" id="validationDefault03" required>
+                <label for="edad" class="form-label">Age</label>
+                <input type="number" class="form-control" id="edad" required>
             </div>
             <div class="col-md-8">
-                <label for="validationDefault05" class="form-label">City</label>
-                <input type="text" class="form-control" id="validationDefault05" required>
+                <label for="direccion" class="form-label">Direction</label>
+                <input type="text" class="form-control" id="direccion">
             </div>
             <div class="col-md-4">
-                <label for="validationDefault04" class="form-label">Rut</label>
-                <input type="number" class="form-control" id="validationDefault04" required>
+                <label for="rut" class="form-label">Rut</label>
+                <input type="number" class="form-control" id="rut">
             </div>
             <div class="col-md-4">
-                <label for="validationDefault06" class="form-label">Phone number</label>
-                <input type="number" class="form-control" id="validationDefault06" required>
+                <label for="telefono" class="form-label">Phone number</label>
+                <input type="number" class="form-control" id="telefono">
             </div>
-            <div class="col-md-8">
-                <label for="validationDefaultUsername" class="form-label">Email</label>
+            <div class="col-md-6">
+                <label for="correo" class="form-label">Email</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input type="email" class="form-control" id="validationDefaultUsername"
-                        aria-describedby="inputGroupPrepend2" required>
+                    <input type="email" class="form-control" id="correo"
+                        aria-describedby="inputGroupPrepend2">
                 </div>
             </div>
             <!-- <div class="col-md-3">
@@ -140,7 +140,7 @@
               </select>
             </div> -->
 
-            <div class="col-12">
+            <div id="btnGuardarAlumno">
                 <button type="submit">Guardar</button>
             </div>
         </form>

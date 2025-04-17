@@ -1,5 +1,5 @@
 body {
-    width: 80%;
+    width: 75%;
     height: 100vh;
     justify-self: center;
     align-content: center;
@@ -8,8 +8,21 @@ body {
 
 /* Section navBar */
 
+#pInscripcion {
+    width: 80%;
+    justify-self: center;
+}
+
+#pInscripcion form {
+    justify-content: space-evenly;
+}
+
+#btnGuardarAlumno {
+    text-align: center;
+}
+
 nav {
-    background-color: blanchedalmond !important;
+    background-color: #BBD8A3 !important;
 }
 
 #btnH {
@@ -22,4 +35,16 @@ nav {
 
 #canvasHeader {
     padding-top: 30px;
+}
+
+#offcanvasNavbar {
+    background-color: bisque;
+}
+
+#dropdownClases {
+    background-color: #F8F3D9;
+}
+
+#dropdownClases li a:hover {
+    background-color: #EBE5C2;
 }
