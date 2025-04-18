@@ -19,7 +19,8 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search student" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search student" aria-label="Search"
+                        id="search">
                     <button class="btn btn-outline-secondary" type="submit">Go</button>
                 </form>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -79,6 +80,11 @@
             </div>
         </nav>
 
+        <div id="searchResults">
+            <h3>Resultados de búsqueda:</h3>
+            <ul id="resultsList"></ul>
+        </div>
+
 
         <!-- <nav id="menuIz">
             <div id="search">
@@ -120,8 +126,7 @@
                 <label for="correo" class="form-label">Email</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                    <input type="email" class="form-control" id="correo"
-                        aria-describedby="inputGroupPrepend2">
+                    <input type="email" class="form-control" id="correo" aria-describedby="inputGroupPrepend2">
                 </div>
             </div>
             <div class="col-md-4">
@@ -132,7 +137,7 @@
                 <label for="telefono" class="form-label">Phone number</label>
                 <input type="number" class="form-control" id="telefono">
             </div>
-            
+
             <!-- <div class="col-md-3">
               <label for="validationDefault05" class="form-label">State</label>
               <select class="form-select" id="validationDefault05" required>
@@ -146,7 +151,7 @@
             </div>
         </form>
 
-<!-- 
+        <!-- 
         <form id="formulario">
             <input type="text" id="nombre" name="nombre">
             <label for="nombre">Ingrese el nombre del alumno</label><br><br>
@@ -169,7 +174,7 @@
             <input type="text" id="correo" name="correo">
             <label for="correo">Ingrese el correo electronico del alumno</label><br><br>
  -->
-            <!-- 
+        <!-- 
         <p> Materias a las que se inscribe el alumno</p>
 
         <div class="form-check form-switch">
@@ -188,7 +193,7 @@
             <input class="form-check-input" type="checkbox" role="switch" id="ingles" value="ingles" name="materias">
             <label class="form-check-label" for="ingles">Ingles</label>
         </div> -->
-<!--         </form>
+        <!--         </form>
 
         <button id="btnGuardarAlumno">Guardar Alumno</button>
  -->
