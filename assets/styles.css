@@ -13,12 +13,20 @@ body {
     justify-self: center;
 }
 
+#pInscripcion h2 {
+    margin-top: 30px
+}
+
 #pInscripcion form {
     justify-content: space-evenly;
 }
 
-#btnGuardarAlumno {
-    text-align: center;
+#btnGuardarAlumno{
+    text-align: end;
+}
+
+#btnGuardarAlumno button{
+    margin-top: 10px !important;
 }
 
 nav {
@@ -41,10 +49,10 @@ nav {
     background-color: bisque;
 }
 
-#dropdownClases {
-    background-color: #F8F3D9;
+.dropdownClass {
+    background-color: #F8F3D9 !important;
 }
 
-#dropdownClases li a:hover {
+.dropdownClass li a:hover {
     background-color: #EBE5C2;
 }
