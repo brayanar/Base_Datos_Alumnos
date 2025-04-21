@@ -253,6 +253,39 @@ document.querySelectorAll(".dropdown-item").forEach(item => {
 });
 
 
+// Función para calcular el promedio de notas
+
+function calcularPromedio(notas) {
+    // Filtrar notas válidas (números mayores o iguales a 0)
+    const notasValidas = notas.filter(nota => !isNaN(nota) && nota >= 0);
+
+    if (notasValidas.length === 0) return "Sin notas"; // Si no hay notas válidas, retorna "Sin notas"
+
+    const suma = notasValidas.reduce((acc, nota) => acc + nota, 0); // Sumar las notas válidas
+    const promedio = suma / notasValidas.length; // Dividir entre la cantidad de notas válidas
+    return promedio.toFixed(2); // Redondear a 2 decimales
+}
+
+
+// Función para actualizar el promedio al cambiar una nota
+
+function actualizarPromedio(index, materia) {
+    const inputs = document.querySelectorAll(`.nota-input[data-index="${index}"][data-materia="${materia}"]`);
+    const notas = Array.from(inputs).map(input => parseFloat(input.value) || NaN); // Convertir valores a números o NaN
+
+    // Actualizar las notas en el objeto del alumno
+    alumnos[index].calificaciones[materia] = notas;
+
+    // Calcular el nuevo promedio
+    const promedio = calcularPromedio(notas);
+
+    // Actualizar la celda del promedio en la tabla
+    const row = inputs[0].closest("tr");
+    const promedioCell = row.querySelector(".promedio-cell");
+    promedioCell.textContent = promedio;
+}
+
+
 
 // Grilla de alumnos en todas las pantallas
 
@@ -272,7 +305,7 @@ function mostrarGrid(materiaSeleccionada) {
     if (alumnosFiltrados.length === 0) {
         const row = dataGrid.insertRow();
         const cell = row.insertCell();
-        cell.colSpan = 3;
+        cell.colSpan = 9; // Número de columnas
         cell.textContent = "No hay alumnos inscritos en esta materia.";
         return;
     }
@@ -283,18 +316,25 @@ function mostrarGrid(materiaSeleccionada) {
 
         // Columna para el nombre del alumno
         const nameCell = row.insertCell();
-        nameCell.textContent = `${alumno.nombre} ${alumno.apellidos}`;
+        nameCell.textContent = alumno.nombre;
 
-        // Columna para las notas existentes
-        const notasCell = row.insertCell();
-        notasCell.textContent = alumno.calificaciones[materiaSeleccionada]?.join(", ") || "Sin notas";
+        // Columna para el apellido del alumno
+        const lastNameCell = row.insertCell();
+        lastNameCell.textContent = alumno.apellidos;
 
-        // Columna para ingresar nuevas notas
-        const actionsCell = row.insertCell();
-        actionsCell.innerHTML = `
-            <input type="number" class="nota-input" data-index="${index}" min="0" max="10" placeholder="Nota">
-            <button onclick="guardarNotas(${index}, '${materiaSeleccionada}')">Guardar Notas</button>
-        `;
+        // Crear columnas para las 6 notas
+        for (let i = 0; i < 6; i++) {
+            const notaCell = row.insertCell();
+            const nota = alumno.calificaciones[materiaSeleccionada]?.[i] || ""; // Obtener la nota o dejar vacío
+            notaCell.innerHTML = `
+                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="${materiaSeleccionada}" min="0" max="10" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, '${materiaSeleccionada}')">
+            `;
+        }
+
+        // Columna para el promedio
+        const promedioCell = row.insertCell();
+        promedioCell.classList.add("promedio-cell");
+        promedioCell.textContent = calcularPromedio(alumno.calificaciones[materiaSeleccionada] || []);
     });
 }
 
