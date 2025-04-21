@@ -12,9 +12,9 @@
 
 <body>
 
-    <section id="navBar">
+    <!-- Menu principal de direcciones -->
 
-        <!-- Menu principal de direcciones -->
+    <section id="navBar">
 
         <nav class="navbar">
             <div class="container-fluid">
@@ -83,9 +83,11 @@
 
     </section>
 
-    <section id="pInscripcion">
 
-        <!-- Pantalla de inscripción de un alumno -->
+
+    <!-- Pantalla de inscripción de un alumno -->
+
+    <section id="pInscripcion">
 
         <h2>Inscribir alumnos</h2>
 
@@ -125,7 +127,7 @@
             <div class="col-md-4">
                 <label for="materias" class="form-label">Subjects</label>
                 <select id="materias" class="form-select">
-                    <option selected>Choose...</option>
+                    <option selected disabled value="">Choose...</option>
                     <option value="lenguaje">Lenguaje</option>
                     <option value="matematicas">Matematicas</option>
                     <option value="ingles">Ingles</option>
@@ -140,9 +142,11 @@
 
     </section>
 
-    <section id="pGrilla" style="display: none;">
 
-        <!-- Grilla de Alumnos -->
+
+    <!-- Pantalla de Grilla de Alumnos -->
+
+    <section id="pGrilla">
 
         <h1 id="h1Grid"></h1>
 
@@ -158,6 +162,10 @@
             </tbody>
         </table>
     </section>
+
+
+
+    <!-- Pantalla de gestión de grupos -->
 
     <section id="pGrupos" style="display: none;">
         <h2>Gestión de Grupos</h2>
@@ -183,6 +191,8 @@
             <button id="btnAsignarAlumno" class="btn btn-success mt-2">Asignar Alumno</button>
         </div>
     </section>
+
+
 
     <script src="./assets/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
