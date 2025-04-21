@@ -230,8 +230,8 @@ function guardarNotas(index, materia) {
     const notas = Array.from(inputs).map(input => parseFloat(input.value) || 0);
 
     // Validar que las notas sean válidas
-    if (notas.some(nota => nota < 0 || nota > 10)) {
-        alert("Por favor, ingresa notas válidas (entre 0 y 10).");
+    if (notas.some(nota => nota < 0 || nota > 7)) {
+        alert("Por favor, ingresa notas válidas (entre 0 y 7).");
         return;
     }
 
@@ -400,10 +400,10 @@ function actualizarListaGrupos() {
     const dropdownMenu = document.querySelector("#dropdownMenu");
     dropdownMenu.innerHTML = ""; // Limpia la lista antes de actualizarla
 
-    grupos.forEach(grupo => {
+    grupos.forEach((grupo, index) => {
         const grupoItem = document.createElement("li");
         grupoItem.innerHTML = `
-            <a class="dropdown-item" href="#pGrilla">${grupo.nombre}</a>
+            <a class="dropdown-item" href="#pGrilla" onclick="mostrarGrupo(${index})">${grupo.nombre}</a>
         `;
         dropdownMenu.appendChild(grupoItem); // Agrega el <li> al <ul>
     });
@@ -454,6 +454,56 @@ function actualizarSelectAlumnos() {
 }
 
 
+
+
+// Función para mostrar los alumnos de un grupo
+
+function mostrarGrupo(grupoIndex) {
+    const dataGrid = document.querySelector("#dataGrid tbody");
+    const h1Grid = document.querySelector("#h1Grid");
+
+    // Limpiar el grid y el título
+    dataGrid.innerHTML = "";
+    h1Grid.textContent = `Alumnos del grupo: ${grupos[grupoIndex].nombre}`;
+
+    // Obtener los alumnos del grupo seleccionado
+    const alumnosFiltrados = grupos[grupoIndex].alumnos;
+
+    if (alumnosFiltrados.length === 0) {
+        const row = dataGrid.insertRow();
+        const cell = row.insertCell();
+        cell.colSpan = 9; // Número de columnas
+        cell.textContent = "No hay alumnos asignados a este grupo.";
+        return;
+    }
+
+    // Crear filas para cada alumno
+    alumnosFiltrados.forEach((alumno, index) => {
+        const row = dataGrid.insertRow();
+
+        // Columna para el nombre del alumno
+        const nameCell = row.insertCell();
+        nameCell.textContent = alumno.nombre;
+
+        // Columna para el apellido del alumno
+        const lastNameCell = row.insertCell();
+        lastNameCell.textContent = alumno.apellidos;
+
+        // Crear columnas para las 6 notas
+        for (let i = 0; i < 6; i++) {
+            const notaCell = row.insertCell();
+            const nota = alumno.calificaciones["grupo"]?.[i] || ""; // Obtener la nota o dejar vacío
+            notaCell.innerHTML = `
+                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="grupo" min="0" max="10" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, 'grupo')">
+            `;
+        }
+
+        // Columna para el promedio
+        const promedioCell = row.insertCell();
+        promedioCell.classList.add("promedio-cell");
+        promedioCell.textContent = calcularPromedio(alumno.calificaciones["grupo"] || []);
+    });
+}
 
 
 // Eventos
