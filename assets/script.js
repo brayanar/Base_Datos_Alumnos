@@ -307,8 +307,11 @@ function mostrarGrid(materiaSeleccionada) {
         const cell = row.insertCell();
         cell.colSpan = 9; // Número de columnas
         cell.textContent = "No hay alumnos inscritos en esta materia.";
+        h1Grid.textContent += " - Promedio General: Sin datos";
         return;
     }
+
+    let sumaPromedios = 0;
 
     // Crear filas para cada alumno
     alumnosFiltrados.forEach((alumno, index) => {
@@ -334,8 +337,16 @@ function mostrarGrid(materiaSeleccionada) {
         // Columna para el promedio
         const promedioCell = row.insertCell();
         promedioCell.classList.add("promedio-cell");
-        promedioCell.textContent = calcularPromedio(alumno.calificaciones[materiaSeleccionada] || []);
+        const promedio = calcularPromedio(alumno.calificaciones[materiaSeleccionada] || []);
+        promedioCell.textContent = promedio;
+
+        // Sumar el promedio al total
+        sumaPromedios += parseFloat(promedio) || 0;
     });
+
+    // Calcular el promedio general
+    const promedioGeneral = (sumaPromedios / alumnosFiltrados.length).toFixed(2);
+    h1Grid.textContent += ` - Promedio General: ${promedioGeneral}`;
 }
 
 
@@ -474,8 +485,11 @@ function mostrarGrupo(grupoIndex) {
         const cell = row.insertCell();
         cell.colSpan = 9; // Número de columnas
         cell.textContent = "No hay alumnos asignados a este grupo.";
+        h1Grid.textContent += " - Promedio General: Sin datos";
         return;
     }
+
+    let sumaPromedios = 0;
 
     // Crear filas para cada alumno
     alumnosFiltrados.forEach((alumno, index) => {
@@ -501,8 +515,16 @@ function mostrarGrupo(grupoIndex) {
         // Columna para el promedio
         const promedioCell = row.insertCell();
         promedioCell.classList.add("promedio-cell");
-        promedioCell.textContent = calcularPromedio(alumno.calificaciones["grupo"] || []);
+        const promedio = calcularPromedio(alumno.calificaciones["grupo"] || []);
+        promedioCell.textContent = promedio;
+
+        // Sumar el promedio al total
+        sumaPromedios += parseFloat(promedio) || 0;
     });
+
+    // Calcular el promedio general
+    const promedioGeneral = (sumaPromedios / alumnosFiltrados.length).toFixed(2);
+    h1Grid.textContent += ` - Promedio General: ${promedioGeneral}`;
 }
 
 
