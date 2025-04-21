@@ -363,12 +363,9 @@ function actualizarListaGrupos() {
     grupos.forEach(grupo => {
         const grupoItem = document.createElement("li");
         grupoItem.innerHTML = `
-            <strong>${grupo.nombre}</strong>
-            <ul>
-                ${grupo.alumnos.map(alumno => `<li>${alumno.nombre} ${alumno.apellidos}</li>`).join("")}
-            </ul>
+            <a class="dropdown-item" href="#pGrilla">${grupo.nombre}</a>
         `;
-        dropdownMenu.appendChild(grupoItem);
+        dropdownMenu.appendChild(grupoItem); // Agrega el <li> al <ul>
     });
 }
 
@@ -376,23 +373,17 @@ function actualizarListaGrupos() {
 
 
 // Función para actualizar el select de grupos
-function actualizarSelectAlumnos() {
-    const alumnoSelect = document.querySelector("#alumnoSelect");
-    alumnoSelect.innerHTML = '<option selected disabled>Selecciona un alumno...</option>';
+function actualizarSelectGrupos() {
+    const grupoSelect = document.querySelector("#grupoSelect");
+    grupoSelect.innerHTML = '<option selected disabled>Selecciona un grupo...</option>';
 
-    if (alumnos.length === 0) {
-        const option = document.createElement("option");
-        option.disabled = true;
-        option.textContent = "No hay alumnos registrados.";
-        alumnoSelect.appendChild(option);
-        return;
-    }
+    console.log("Grupos registrados:", grupos); // Depuración
 
-    alumnos.forEach((alumno, index) => {
+    grupos.forEach(grupo => {
         const option = document.createElement("option");
-        option.value = index;
-        option.textContent = `${alumno.nombre} ${alumno.apellidos}`;
-        alumnoSelect.appendChild(option);
+        option.value = grupo.nombre;
+        option.textContent = grupo.nombre;
+        grupoSelect.appendChild(option);
     });
 }
 
@@ -426,7 +417,6 @@ function actualizarSelectAlumnos() {
 
 
 // Eventos
-
 document.querySelector("#btnCrearGrupo").addEventListener("click", () => {
     crearGrupo();
     actualizarSelectGrupos(); // Actualizar el select de grupos después de crear un grupo
