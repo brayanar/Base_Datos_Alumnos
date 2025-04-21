@@ -45,7 +45,7 @@
                                     aria-expanded="false">
                                     Clases
                                 </a>
-                                <ul class="dropdown-menu dropdownClass">
+                                <ul class="dropdown-menu dropdownClass" id="dropdownClass">
                                     <li><a class="dropdown-item" href="#pGrilla">Lenguaje</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -62,18 +62,14 @@
 
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                            <li class="nav-item dropdown" id="toggleGrupos">
+                                <a class="nav-link dropdown-toggle" href="#pGrupos" data-bs-toggle="dropdown"
+                                    aria-expanded="false" id="pGruposLink">
                                     Grupos
                                 </a>
-                                <ul class="dropdown-menu dropdownClass">
-                                    <li><a class="dropdown-item" href="#">Nuevo grupo</a></li>
+                                <ul class="dropdown-menu dropdownClass" id="dropdownMenu">
                                 </ul>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="#pClases">Clases</a>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -81,21 +77,9 @@
         </nav>
 
         <div id="searchResults">
-            <h3>Resultados de búsqueda:</h3>
+            <h3 id="h3ResultsList"></h3>
             <ul id="resultsList"></ul>
         </div>
-
-
-        <!-- <nav id="menuIz">
-            <div id="search">
-                <input type="search" placeholder="Search" aria-label="search">
-                <button type="submit" onclick="buscar()">Buscar</button>
-            </div>
-            <a id="pInscripcion" class="link" href="#pInscripcion">Inscribir Alumno</a>
-            <a id="pClases" class="link" href="#pClases">Clases</a>
-            <a id="pEquipos" class="link" href="#pEquipos">Equipos</a>
-            <a id="pDashboard" class="link" href="#pDasboard">Dashboar</a>
-        </nav> -->
 
     </section>
 
@@ -138,107 +122,66 @@
                 <input type="number" class="form-control" id="telefono">
             </div>
 
-            <!-- <div class="col-md-3">
-              <label for="validationDefault05" class="form-label">State</label>
-              <select class="form-select" id="validationDefault05" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-              </select>
-            </div> -->
+            <div class="col-md-4">
+                <label for="materias" class="form-label">Subjects</label>
+                <select id="materias" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="lenguaje">Lenguaje</option>
+                    <option value="matematicas">Matematicas</option>
+                    <option value="ingles">Ingles</option>
+                    <option value="contabilidad">Contabilidad</option>
+                </select>
+            </div>
 
             <div id="btnGuardarAlumno">
                 <button type="submit">Guardar</button>
             </div>
         </form>
 
-        <!-- 
-        <form id="formulario">
-            <input type="text" id="nombre" name="nombre">
-            <label for="nombre">Ingrese el nombre del alumno</label><br><br>
-
-            <input type="text" id="apellidos" name="apellidos">
-            <label for="apellidos">Ingrese los apellidos del alumno</label><br><br>
-
-            <input type="number" id="edad" name="edad">
-            <label for="edad">Ingrese la edad del alumno</label><br><br>
-
-            <input type="number" id="rut" name="rut">
-            <label for="rut">Ingrese el RUT del alumno</label><br><br>
-
-            <input type="text" id="direccion" name="direccion">
-            <label for="direccion">Ingrese la dirección del alumno</label><br><br>
-
-            <input type="number" id="telefono" name="telefono">
-            <label for="telefono">Ingrese el numero de telefono del alumno</label><br><br>
-
-            <input type="text" id="correo" name="correo">
-            <label for="correo">Ingrese el correo electronico del alumno</label><br><br>
- -->
-        <!-- 
-        <p> Materias a las que se inscribe el alumno</p>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="lenguaje" value="lenguaje"
-                name="materias">
-            <label class="form-check-label" for="lenguaje">Lenguaje</label>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="matematicas" value="matematicas"
-                name="materias">
-            <label class="form-check-label" for="matematicas">Matematicas</label>
-        </div>
-
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="ingles" value="ingles" name="materias">
-            <label class="form-check-label" for="ingles">Ingles</label>
-        </div> -->
-        <!--         </form>
-
-        <button id="btnGuardarAlumno">Guardar Alumno</button>
- -->
     </section>
 
-    <section id="pClases" style="display: none;">
-
-        <!-- Menu de clases con almunos inscritos -->
-
-        <div>
-            <button>
-                <a href="#pAlumnos">Lenguaje</a>
-            </button>
-        </div>
-
-        <div>
-            <button>
-                <a href="#pAlumnos">Matematicas</a>
-            </button>
-        </div>
-
-        <div>
-            <button>
-                <a href="#pAlumnos">Ingles</a>
-            </button>
-        </div>
-
-        <div>
-            <button>
-                <a href="#pAlumnos">Contabilidad</a>
-            </button>
-        </div>
-
-    </section>
-
-    <section id="pEquipos">
-
-        <!-- Menu de Equipos con alumnos inscritos -->
-
-    </section>
-
-    <section id="pAlumnos">
+    <section id="pGrilla" style="display: none;">
 
         <!-- Grilla de Alumnos -->
 
+        <h1 id="h1Grid"></h1>
+
+        <table id="dataGrid">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="pGrupos" style="display: none;">
+        <h2>Gestión de Grupos</h2>
+
+        <div>
+            <label for="nombreGrupo" class="form-label">Nombre del Grupo</label>
+            <input type="text" id="nombreGrupo" class="form-control" placeholder="Nombre del grupo">
+            <button id="btnCrearGrupo" class="btn btn-primary mt-2">Crear Grupo</button>
+        </div>
+
+        <div>
+            <h3>Asignar Alumnos a Grupos</h3>
+            <label for="grupoSelect" class="form-label">Selecciona un Grupo</label>
+            <select id="grupoSelect" class="form-select">
+                <option selected disabled>Selecciona un grupo...</option>
+            </select>
+
+            <label for="alumnoSelect" class="form-label mt-3">Selecciona un Alumno</label>
+            <select id="alumnoSelect" class="form-select">
+                <option selected disabled>Selecciona un alumno...</option>
+            </select>
+
+            <button id="btnAsignarAlumno" class="btn btn-success mt-2">Asignar Alumno</button>
+        </div>
     </section>
 
     <script src="./assets/script.js"></script>
