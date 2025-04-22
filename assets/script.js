@@ -528,6 +528,26 @@ function mostrarGrupo(grupoIndex) {
 }
 
 
+
+// Ordenar alumnos por notas
+
+function ordenarPorNota(columna, ascendente) {
+    const dataGrid = document.querySelector("#dataGrid tbody");
+    const filas = Array.from(dataGrid.rows);
+
+    // Ordenar las filas según la columna seleccionada
+    filas.sort((a, b) => {
+        const notaA = parseFloat(a.cells[columna + 2].querySelector("input").value) || 0; // +2 para saltar Nombre y Apellido
+        const notaB = parseFloat(b.cells[columna + 2].querySelector("input").value) || 0;
+
+        return ascendente ? notaA - notaB : notaB - notaA;
+    });
+
+    // Reinsertar las filas ordenadas en el tbody
+    filas.forEach(fila => dataGrid.appendChild(fila));
+}
+
+
 // Eventos
 document.querySelector("#btnCrearGrupo").addEventListener("click", () => {
     crearGrupo();
@@ -543,4 +563,15 @@ document.querySelector("#pGruposLink").addEventListener("click", () => {
 
     const pInscripcion = document.querySelector("#pInscripcion");
     pInscripcion.style.display = "none"; // Ocultar la sección de inscripción
+});
+
+
+document.querySelectorAll("th.sortable").forEach(th => {
+    let ascendente = true; // Estado inicial de ordenación
+
+    th.addEventListener("click", () => {
+        const columna = parseInt(th.getAttribute("data-columna"), 10); // Obtener el índice de la columna
+        ordenarPorNota(columna, ascendente); // Llamar a la función de ordenación
+        ascendente = !ascendente; // Alternar entre ascendente y descendente
+    });
 });

@@ -56,3 +56,10 @@ nav {
 .dropdownClass li a:hover {
     background-color: #EBE5C2;
 }
+
+
+
+
+.sortable {
+    cursor: pointer;
+}
