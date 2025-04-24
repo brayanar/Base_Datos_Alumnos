@@ -99,3 +99,29 @@ nav {
 .sortable {
     cursor: pointer;
 }
+
+.btn-close {
+    background-color: white;
+}
+
+#pGrupos {
+    width: 95%;
+    justify-self: center;
+}
+
+.form-select {
+    background-color: #F2EFE7 !important;
+}
+
+#btnGO {
+    background-color: #F2EFE7 !important;
+}
+
+#btnH {
+    background-color: #F2EFE7 !important;
+}
+
+#btnGuardar {
+    background-color: #F2EFE7 !important;
+    border-radius: 5px;
+}
