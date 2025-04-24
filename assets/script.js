@@ -1,3 +1,7 @@
+const pInscripcion = document.getElementById("pInscripcion");
+const pGrilla = document.getElementById("pGrilla");
+const pGrupos = document.getElementById("pGrupos");
+
 class alumno {
 
     constructor(nombre, apellidos, edad, rut, direccion, telefono, correo, materias, calificaciones) {
@@ -104,8 +108,6 @@ document.getElementById("btnGuardarAlumno").addEventListener("click", guardarAlu
 
 
 
-
-
 function reiniciarBotonesSeleccionar() {
     const botonesSeleccionar = document.querySelectorAll("#resultsList button");
     botonesSeleccionar.forEach(boton => {
@@ -131,15 +133,6 @@ function limpiarFormulario() {
     alumnoEditandoIndex = null;
 }
 
-
-
-// Evento para mostrar la sección de inscripción
-
-document.getElementById("pInscribir").addEventListener("click", () => {
-    const pInscripcion = document.getElementById("pInscripcion");
-    pInscripcion.style.display = "";
-
-});
 
 
 
@@ -558,12 +551,33 @@ document.querySelector("#btnCrearGrupo").addEventListener("click", () => {
 document.querySelector("#btnAsignarAlumno").addEventListener("click", asignarAlumnoAGrupo);
 
 document.querySelector("#pGruposLink").addEventListener("click", () => {
-    const pGrupos = document.querySelector("#pGrupos");
-    pGrupos.style.display = ""; // Mostrar la sección de grupos
+    pGrupos.style.display = "";
 
-    const pInscripcion = document.querySelector("#pInscripcion");
-    pInscripcion.style.display = "none"; // Ocultar la sección de inscripción
+    pInscripcion.style.display = "none"; 
+    pGrilla.style.display = "none";
 });
+
+document.querySelector("#dropdownClass").addEventListener("click", () => {
+    pGrilla.style.display = ""; 
+
+    pInscripcion.style.display = "none"; 
+    pGrupos.style.display = "none";
+})
+
+document.querySelector("#pInscribir").addEventListener("click", () => {
+    pInscripcion.style.display = ""; 
+
+    pGrilla.style.display = "none"; 
+    pGrupos.style.display = "none";
+})
+
+document.querySelector("#btnGO").addEventListener("click", () => {
+    pInscripcion.style.display = ""; 
+
+    pGrilla.style.display = "none"; 
+    pGrupos.style.display = "none";
+})
+
 
 
 document.querySelectorAll("th.sortable").forEach(th => {

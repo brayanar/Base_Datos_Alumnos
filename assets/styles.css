@@ -1,16 +1,24 @@
+html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Opcional: centra verticalmente también */
+    height: 100%;
+    margin: 0;
+}
+
 body {
-    width: 75%;
+    width: 85%;
     height: 100vh;
     justify-self: center;
-    align-content: center;
-    background-color: #F8F3D9 !important;
+    justify-content: center;
 }
 
 /* Section navBar */
 
 #pInscripcion {
     width: 80%;
-    justify-self: center;
+    justify-self: center !important;
 }
 
 #pInscripcion h2 {
@@ -21,16 +29,20 @@ body {
     justify-content: space-evenly;
 }
 
-#btnGuardarAlumno{
+#btnGuardarAlumno {
     text-align: end;
 }
 
-#btnGuardarAlumno button{
+#btnGuardarAlumno button {
     margin-top: 10px !important;
 }
 
 nav {
-    background-color: #BBD8A3 !important;
+    background-color: #006A71 !important;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    justify-content: center;
 }
 
 #btnH {
@@ -45,19 +57,43 @@ nav {
     padding-top: 30px;
 }
 
+.offcanvas-title {
+    color: white !important;
+}
+
+.offcanvas-header {
+    background-color: #006A71;
+}
+
 #offcanvasNavbar {
-    background-color: bisque;
+    background-color: #F2EFE7;
+}
+
+.nav-link {
+    color: black !important; 
 }
 
 .dropdownClass {
-    background-color: #F8F3D9 !important;
+    background-color: #48A6A7 !important;
 }
 
 .dropdownClass li a:hover {
-    background-color: #EBE5C2;
+    background-color: #006A71;
 }
 
+.dropdown-item {
+    color: white !important;
+}
 
+/* Section pInscripcion */
+
+.form-control {
+    background-color: #F2EFE7 !important;
+}
+
+#thDataGrid th{
+    background-color: #F1EFEC !important;
+}
 
 
 .sortable {

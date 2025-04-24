@@ -21,7 +21,7 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search student" aria-label="Search"
                         id="search">
-                    <button class="btn btn-outline-secondary" type="submit">Go</button>
+                    <button class="btn btn-light" type="submit" id="btnGO">Go</button>
                 </form>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"
@@ -146,13 +146,13 @@
 
     <!-- Pantalla de Grilla de Alumnos -->
 
-    <section id="pGrilla">
+    <section id="pGrilla" style="display: none;">
 
-        <h1 id="h1Grid"></h1>
+        <h2 id="h1Grid"></h2>
 
         <table id="dataGrid" class="table">
             <thead>
-                <tr>
+                <tr id="thDataGrid">
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th data-columna="0" class="sortable">Nota 1</th>
@@ -179,7 +179,7 @@
         <div>
             <label for="nombreGrupo" class="form-label">Nombre del Grupo</label>
             <input type="text" id="nombreGrupo" class="form-control" placeholder="Nombre del grupo">
-            <button id="btnCrearGrupo" class="btn btn-primary mt-2">Crear Grupo</button>
+            <button id="btnCrearGrupo" class="btn btn-light mt-2">Crear Grupo</button>
         </div>
 
         <div>
@@ -194,7 +194,7 @@
                 <option selected disabled>Selecciona un alumno...</option>
             </select>
 
-            <button id="btnAsignarAlumno" class="btn btn-success mt-2">Asignar Alumno</button>
+            <button id="btnAsignarAlumno" class="btn btn-light mt-2">Asignar Alumno</button>
         </div>
     </section>
 
