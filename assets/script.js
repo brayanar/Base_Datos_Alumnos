@@ -236,6 +236,7 @@ function guardarNotas(index, grupo) {
     }
     alumnos[index].calificaciones[grupo] = notas; // Actualizar las notas del grupo
 
+    guardarEnLocalStorage(); // Guardar en localStorage
     alert(`Notas guardadas para ${alumnos[index].nombre} en el grupo "${grupo}".`);
     console.log(`Alumno actualizado:`, alumnos[index]);
 }
@@ -274,6 +275,8 @@ function actualizarPromedio(index, grupo) {
     const row = inputs[0].closest("tr");
     const promedioCell = row.querySelector(".promedio-cell");
     promedioCell.textContent = promedio;
+
+    guardarEnLocalStorage(); // Guardar en localStorage
 }
 
 
