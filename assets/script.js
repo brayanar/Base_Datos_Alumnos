@@ -1,5 +1,3 @@
-cargarDesdeLocalStorage();
-
 const pInscripcion = document.getElementById("pInscripcion");
 const pGrilla = document.getElementById("pGrilla");
 const pGrupos = document.getElementById("pGrupos");
@@ -25,23 +23,12 @@ class alumno {
 }
 
 
+
+
+
 function guardarEnLocalStorage() {
     localStorage.setItem("alumnos", JSON.stringify(alumnos));
     localStorage.setItem("grupos", JSON.stringify(grupos));
-}
-
-
-function cargarDesdeLocalStorage() {
-    const alumnosGuardados = localStorage.getItem("alumnos");
-    const gruposGuardados = localStorage.getItem("grupos");
-
-    if (alumnosGuardados) {
-        alumnos = JSON.parse(alumnosGuardados);
-    }
-
-    if (gruposGuardados) {
-        grupos = JSON.parse(gruposGuardados);
-    }
 }
 
 
@@ -123,6 +110,9 @@ function guardarAlumno() {
 }
 
 document.getElementById("btnGuardarAlumno").addEventListener("click", guardarAlumno);
+
+
+
 
 
 
@@ -607,3 +597,20 @@ document.querySelectorAll("th.sortable").forEach(th => {
         ascendente = !ascendente; // Alternar entre ascendente y descendente
     });
 });
+
+
+
+cargarDesdeLocalStorage();
+
+function cargarDesdeLocalStorage() {
+    const alumnosGuardados = localStorage.getItem("alumnos");
+    const gruposGuardados = localStorage.getItem("grupos");
+
+    if (alumnosGuardados) {
+        alumnos = JSON.parse(alumnosGuardados);
+    }
+
+    if (gruposGuardados) {
+        grupos = JSON.parse(gruposGuardados);
+    }
+}
