@@ -1,3 +1,5 @@
+cargarDesdeLocalStorage();
+
 const pInscripcion = document.getElementById("pInscripcion");
 const pGrilla = document.getElementById("pGrilla");
 const pGrupos = document.getElementById("pGrupos");
@@ -23,7 +25,24 @@ class alumno {
 }
 
 
+function guardarEnLocalStorage() {
+    localStorage.setItem("alumnos", JSON.stringify(alumnos));
+    localStorage.setItem("grupos", JSON.stringify(grupos));
+}
 
+
+function cargarDesdeLocalStorage() {
+    const alumnosGuardados = localStorage.getItem("alumnos");
+    const gruposGuardados = localStorage.getItem("grupos");
+
+    if (alumnosGuardados) {
+        alumnos = JSON.parse(alumnosGuardados);
+    }
+
+    if (gruposGuardados) {
+        grupos = JSON.parse(gruposGuardados);
+    }
+}
 
 
 let alumnos = []
@@ -42,7 +61,7 @@ function guardarAlumno() {
     const correoAlumno = document.querySelector("#correo").value.trim();
     const materiasAlumno = Array.from(document.querySelector("#materias").selectedOptions)
         .map(option => option.value)
-        .filter(value => value !== "Selecciona una materia"); 
+        .filter(value => value !== "Selecciona una materia");
 
     if (!nombreAlumno || !apellidosAlumno || !edadAlumno) {
         alert("Por favor, complete todos los campos obligatorios.");
@@ -68,7 +87,7 @@ function guardarAlumno() {
         materiasAlumno.forEach(materia => {
             if (!alumno.materias.includes(materia)) {
                 alumno.materias.push(materia);
-                alumno.calificaciones[materia] = []; // Inicializar calificaciones para la nueva materia
+                alumno.calificaciones[materia] = [];
             }
         });
 
@@ -78,7 +97,7 @@ function guardarAlumno() {
         // Crear un nuevo alumno
         const calificacionesIniciales = {};
         materiasAlumno.forEach(materia => {
-            calificacionesIniciales[materia] = []; // Inicializar calificaciones para cada materia
+            calificacionesIniciales[materia] = [];
         });
 
         const nuevoAlumno = new alumno(
@@ -97,9 +116,10 @@ function guardarAlumno() {
         alert("Alumno guardado correctamente.");
     }
 
+    guardarEnLocalStorage(); // Guardar en localStorage
     limpiarFormulario();
     reiniciarBotonesSeleccionar();
-    actualizarSelectAlumnos(); // Actualizar el select de alumnos después de guardar
+    actualizarSelectAlumnos();
 }
 
 document.getElementById("btnGuardarAlumno").addEventListener("click", guardarAlumno);
@@ -352,9 +372,10 @@ function crearGrupo() {
     }
 
     grupos.push({ nombre: nombreGrupo, alumnos: [] });
-    actualizarListaGrupos(); // Actualiza la lista de grupos
+    guardarEnLocalStorage(); // Guardar en localStorage
+    actualizarListaGrupos();
     alert(`Grupo "${nombreGrupo}" creado correctamente.`);
-    document.querySelector("#nombreGrupo").value = ""; // Limpia el input
+    document.querySelector("#nombreGrupo").value = "";
 }
 
 
@@ -379,6 +400,7 @@ function asignarAlumnoAGrupo() {
     }
 
     grupo.alumnos.push(alumno);
+    guardarEnLocalStorage(); // Guardar en localStorage
     actualizarListaGrupos();
     alert(`Alumno "${alumno.nombre} ${alumno.apellidos}" asignado al grupo "${grupoSeleccionado}".`);
 }
