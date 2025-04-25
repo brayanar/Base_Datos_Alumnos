@@ -614,3 +614,4 @@ function cargarDesdeLocalStorage() {
         grupos = JSON.parse(gruposGuardados);
     }
 }
+
