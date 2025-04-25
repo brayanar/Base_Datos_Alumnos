@@ -42,9 +42,7 @@ function guardarAlumno() {
     const correoAlumno = document.querySelector("#correo").value.trim();
     const materiasAlumno = Array.from(document.querySelector("#materias").selectedOptions)
         .map(option => option.value)
-        .filter(value => value !== "Selecciona una materia"); // Excluir opciones inválidas
-
-    console.log("Materias seleccionadas:", materiasAlumno); // Depuración
+        .filter(value => value !== "Selecciona una materia"); 
 
     if (!nombreAlumno || !apellidosAlumno || !edadAlumno) {
         alert("Por favor, complete todos los campos obligatorios.");
@@ -116,9 +114,6 @@ function reiniciarBotonesSeleccionar() {
     });
 }
 
-
-
-
 function limpiarFormulario() {
     document.querySelector("#nombre").value = "";
     document.querySelector("#apellidos").value = "";
@@ -127,9 +122,8 @@ function limpiarFormulario() {
     document.querySelector("#direccion").value = "";
     document.querySelector("#telefono").value = "";
     document.querySelector("#correo").value = "";
-    document.querySelector("#materias").selectedIndex = 0; // Reiniciar la selección de materias
+    document.querySelector("#materias").selectedIndex = 0;
 
-    // Reiniciar el índice del alumno editando
     alumnoEditandoIndex = null;
 }
 
@@ -142,7 +136,7 @@ function limpiarFormulario() {
 function buscarAlumno(event) {
     event.preventDefault();
 
-    const searchValue = document.querySelector("#search").value.toLowerCase(); // Obtiene el valor del input
+    const searchValue = document.querySelector("#search").value.toLowerCase();
     const resultados = alumnos.filter((alumno, index) =>
         alumno.nombre.toLowerCase().includes(searchValue) ||
         alumno.apellidos.toLowerCase().includes(searchValue) ||
@@ -211,15 +205,13 @@ function cargarDatosAlumno(index) {
             boton.disabled = false;
         }
     });
-
-    console.log(`Datos del alumno ${alumnoSeleccionado.nombre} cargados para edición.`);
 }
 
 
 
 // Función para guardar las notas
-function guardarNotas(index, materia) {
-    const inputs = document.querySelectorAll(`.nota-input[data-index="${index}"]`);
+function guardarNotas(index, grupo) {
+    const inputs = document.querySelectorAll(`.nota-input[data-index="${index}"][data-materia="${grupo}"]`);
     const notas = Array.from(inputs).map(input => parseFloat(input.value) || 0);
 
     // Validar que las notas sean válidas
@@ -228,46 +220,42 @@ function guardarNotas(index, materia) {
         return;
     }
 
-    // Guardar las notas en la materia correspondiente
-    if (!alumnos[index].calificaciones[materia]) {
-        alumnos[index].calificaciones[materia] = [];
+    // Guardar las notas en el grupo correspondiente
+    if (!alumnos[index].calificaciones[grupo]) {
+        alumnos[index].calificaciones[grupo] = []; // Inicializar el array de notas para el grupo
     }
-    alumnos[index].calificaciones[materia].push(...notas);
+    alumnos[index].calificaciones[grupo] = notas; // Actualizar las notas del grupo
 
-    alert(`Notas guardadas para ${alumnos[index].nombre} en la materia ${materia}.`);
+    alert(`Notas guardadas para ${alumnos[index].nombre} en el grupo "${grupo}".`);
     console.log(`Alumno actualizado:`, alumnos[index]);
 }
 
-document.querySelectorAll(".dropdown-item").forEach(item => {
-    item.addEventListener("click", event => {
-        const materiaSeleccionada = event.target.textContent.trim();
-        mostrarGrid(materiaSeleccionada);
-    });
-});
+
+
 
 
 // Función para calcular el promedio de notas
 
 function calcularPromedio(notas) {
     // Filtrar notas válidas (números mayores o iguales a 0)
-    const notasValidas = notas.filter(nota => !isNaN(nota) && nota >= 0);
+    const notasValidas = notas.filter(nota => !isNaN(nota) && nota >= 0 && nota <= 7);
 
     if (notasValidas.length === 0) return "Sin notas"; // Si no hay notas válidas, retorna "Sin notas"
 
-    const suma = notasValidas.reduce((acc, nota) => acc + nota, 0); // Sumar las notas válidas
-    const promedio = suma / notasValidas.length; // Dividir entre la cantidad de notas válidas
-    return promedio.toFixed(2); // Redondear a 2 decimales
+    const suma = notasValidas.reduce((acc, nota) => acc + nota, 0); 
+    const promedio = suma / notasValidas.length; 
+    return promedio.toFixed(2); 
 }
 
 
 // Función para actualizar el promedio al cambiar una nota
 
-function actualizarPromedio(index, materia) {
-    const inputs = document.querySelectorAll(`.nota-input[data-index="${index}"][data-materia="${materia}"]`);
-    const notas = Array.from(inputs).map(input => parseFloat(input.value) || NaN); // Convertir valores a números o NaN
+function actualizarPromedio(index, grupo) {
+    const inputs = document.querySelectorAll(`.nota-input[data-index="${index}"][data-materia="${grupo}"]`);
+    const notas = Array.from(inputs).map(input => parseFloat(input.value) || 0);
 
     // Actualizar las notas en el objeto del alumno
-    alumnos[index].calificaciones[materia] = notas;
+    alumnos[index].calificaciones[grupo] = notas;
 
     // Calcular el nuevo promedio
     const promedio = calcularPromedio(notas);
@@ -298,7 +286,7 @@ function mostrarGrid(materiaSeleccionada) {
     if (alumnosFiltrados.length === 0) {
         const row = dataGrid.insertRow();
         const cell = row.insertCell();
-        cell.colSpan = 9; // Número de columnas
+        cell.colSpan = 9;
         cell.textContent = "No hay alumnos inscritos en esta materia.";
         h1Grid.textContent += " - Promedio General: Sin datos";
         return;
@@ -323,7 +311,7 @@ function mostrarGrid(materiaSeleccionada) {
             const notaCell = row.insertCell();
             const nota = alumno.calificaciones[materiaSeleccionada]?.[i] || ""; // Obtener la nota o dejar vacío
             notaCell.innerHTML = `
-                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="${materiaSeleccionada}" min="0" max="10" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, '${materiaSeleccionada}')">
+                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="${materiaSeleccionada}" min="1" max="7" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, '${materiaSeleccionada}')">
             `;
         }
 
@@ -341,7 +329,6 @@ function mostrarGrid(materiaSeleccionada) {
     const promedioGeneral = (sumaPromedios / alumnosFiltrados.length).toFixed(2);
     h1Grid.textContent += ` - Promedio General: ${promedioGeneral}`;
 }
-
 
 
 
@@ -407,10 +394,16 @@ function actualizarListaGrupos() {
     grupos.forEach((grupo, index) => {
         const grupoItem = document.createElement("li");
         grupoItem.innerHTML = `
-            <a class="dropdown-item" href="#pGrilla" onclick="mostrarGrupo(${index})">${grupo.nombre}</a>
+            <a class="dropdown-item" href="#pGrilla" onclick="mostrarGrupo(${index}); mostrarSeccionGrilla();">${grupo.nombre}</a>
         `;
         dropdownMenu.appendChild(grupoItem); // Agrega el <li> al <ul>
     });
+}
+
+function mostrarSeccionGrilla() {
+    pGrilla.style.display = ""; // Mostrar la sección de la grilla
+    pInscripcion.style.display = "none"; // Ocultar la sección de inscripción
+    pGrupos.style.display = "none"; // Ocultar la sección de grupos
 }
 
 
@@ -499,16 +492,16 @@ function mostrarGrupo(grupoIndex) {
         // Crear columnas para las 6 notas
         for (let i = 0; i < 6; i++) {
             const notaCell = row.insertCell();
-            const nota = alumno.calificaciones["grupo"]?.[i] || ""; // Obtener la nota o dejar vacío
+            const nota = alumno.calificaciones[grupos[grupoIndex].nombre]?.[i] || ""; // Obtener la nota o dejar vacío
             notaCell.innerHTML = `
-                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="grupo" min="0" max="10" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, 'grupo')">
+                <input type="number" class="nota-input" data-index="${index}" data-nota="${i}" data-materia="${grupos[grupoIndex].nombre}" min="0" max="10" value="${nota}" placeholder="Nota ${i + 1}" onchange="actualizarPromedio(${index}, '${grupos[grupoIndex].nombre}')">
             `;
         }
 
         // Columna para el promedio
         const promedioCell = row.insertCell();
         promedioCell.classList.add("promedio-cell");
-        const promedio = calcularPromedio(alumno.calificaciones["grupo"] || []);
+        const promedio = calcularPromedio(alumno.calificaciones[grupos[grupoIndex].nombre] || []);
         promedioCell.textContent = promedio;
 
         // Sumar el promedio al total
