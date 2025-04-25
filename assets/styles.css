@@ -26,7 +26,7 @@ body {
 }
 
 #pInscripcion form {
-    justify-content: space-evenly;
+    justify-content: end;
 }
 
 #btnGuardarAlumno {

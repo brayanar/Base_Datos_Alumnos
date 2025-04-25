@@ -286,7 +286,7 @@ function mostrarGrid(materiaSeleccionada) {
     if (alumnosFiltrados.length === 0) {
         const row = dataGrid.insertRow();
         const cell = row.insertCell();
-        cell.colSpan = 9;
+        cell.colSpan = 9; // Número de columnas
         cell.textContent = "No hay alumnos inscritos en esta materia.";
         h1Grid.textContent += " - Promedio General: Sin datos";
         return;
@@ -550,12 +550,15 @@ document.querySelector("#pGruposLink").addEventListener("click", () => {
     pGrilla.style.display = "none";
 });
 
-document.querySelector("#dropdownClass").addEventListener("click", () => {
-    pGrilla.style.display = ""; 
-
-    pInscripcion.style.display = "none"; 
-    pGrupos.style.display = "none";
-})
+document.querySelectorAll(".dropdownClass .dropdown-item").forEach(item => {
+    item.addEventListener("click", (event) => {
+        const materiaSeleccionada = event.target.textContent.toLowerCase().trim();
+        mostrarGrid(materiaSeleccionada); // Llama a mostrarGrid con la materia seleccionada
+        pGrilla.style.display = ""; // Muestra la sección de la grilla
+        pInscripcion.style.display = "none"; // Oculta la sección de inscripción
+        pGrupos.style.display = "none"; // Oculta la sección de grupos
+    });
+});
 
 document.querySelector("#pInscribir").addEventListener("click", () => {
     pInscripcion.style.display = ""; 
